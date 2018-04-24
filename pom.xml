@@ -1,0 +1,556 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>GTKMaven</groupId>
+  <artifactId>GTKV1QA</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>GTKV1QA</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	<maven.test.skip>false</maven.test.skip>
+	
+   </properties>
+   <build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+    			<artifactId>maven-compiler-plugin</artifactId>
+    			<version>3.7.0</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+    			<artifactId>maven-surefire-plugin</artifactId>
+    			<version>2.19.1</version>
+				<configuration>
+				<testFailureIgnore>true</testFailureIgnore>
+				<printSummary>true</printSummary>
+				
+					<suiteXmlFiles>
+						<!-- <suiteXmlFile>src\main\resources\testng_updateprojectdetails.xml</suiteXmlFile> -->
+						<suiteXmlFile>src/main/resources/testng_smoke.xml</suiteXmlFile>
+						<!-- <suiteXmlFile>${suiteXmlFile}</suiteXmlFile> -->
+						
+					</suiteXmlFiles>
+					<includes>
+    					<include>**/Test*.java</include>
+						    <!-- <include>**/*Test.java</include>
+						    <include>**/*Tests.java</include>
+						    <include>**/*TestCase.java</include> -->
+					</includes>
+					<!-- <parallel>classes</parallel>
+          			<threadCount>6</threadCount> -->
+          			<!-- <runOrder>alphabetical</runOrder> -->
+          			
+          			
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+    			<artifactId>maven-source-plugin</artifactId>
+    			<version>3.0.1</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+            			<phase>verify</phase>
+            			<goals>
+              				<!-- <goal>test</goal> -->
+              				<goal>integration-test</goal>
+                            <!-- <goal>verify</goal> -->
+            			</goals>	
+					</execution>
+				</executions>
+			</plugin>
+		<plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <version>2.19.1</version>
+        <configuration>
+               <reuseForks>true</reuseForks>
+        </configuration>
+        	<!-- <executions>
+                <execution>
+                        <goals>
+                                <goal>integration-test</goal>
+                                <goal>verify</goal>
+                        </goals>
+                </execution>
+        	</executions> -->
+		</plugin>
+		
+	<!-- <plugin>
+        <groupId>ch.fortysix</groupId>
+        <artifactId>maven-postman-plugin</artifactId>
+        <executions>
+                <execution>
+                        <id>send a mail</id>
+                        <phase>package</phase>
+                        <goals>
+                                <goal>send-mail</goal>
+                        </goals>
+                        <inherited>false</inherited>
+                        <configuration>
+                                <from>mahenders@gtkonnect.com</from>
+                                <subject>a subject</subject>
+                                <failonerror>true</failonerror>
+                                <mailhost>mahenderd@gtkonnect.com</mailhost>
+                                <mailuser>mahenderd@gtkonnect.com</mailuser>
+                                <mailpassword>Pa$$2cloud</mailpassword>
+                                <htmlMessageFile>src/main/MailContent.html</htmlMessageFile>
+                                <receivers>
+                                        <receiver>Mahender</receiver>
+                                        <receiver>mahenderd@gtkonnect.com</receiver>
+                                </receivers>
+                                <fileSets>
+                                        <fileSet>
+                                                <directory>${basedir}/src/main</directory>
+                                                <includes>
+                                                        <include>**/*.pdf</include>
+                                                </includes>
+                                        </fileSet>
+                                </fileSets>
+                        </configuration>
+                </execution>
+        </executions>
+</plugin>	
+		 -->
+	
+	<!--  GAMIL ABLE TO SEND REPORT -->
+	
+	<plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-report-plugin</artifactId>
+            <version>2.19.1</version>
+      </plugin>	 
+	<plugin>
+			<groupId>ch.fortysix</groupId>
+			<artifactId>maven-postman-plugin</artifactId>
+			<version>0.1.6</version>
+			<executions>
+				<execution>
+				
+				<id>send a mail</id>
+				<phase>test</phase>
+				<goals>
+				<goal>send-mail</goal>
+				</goals>
+				<inherited>true</inherited>
+				
+				<configuration>
+					<!-- From Email address -->
+					<from>mahendergtk@gmail.com</from>
+					
+					 <!-- Email subject -->
+					<subject>Test Automation Report</subject>
+					<!-- <body>Please find attached Automation Results for the day</body> -->
+					
+					<htmlMessage>
+					
+                        <![CDATA[<p>Hi,</p>]]>
+                        
+                        <![CDATA[<body>Please find attached Automation Results for the day</body>]]>
+                        
+                        
+                        <![CDATA[<p>Regards,</p>]]> 
+                        <![CDATA[<p>Mahender Singh</p>]]>
+                   	
+                   	</htmlMessage>
+                   	
+					
+					<!-- Fail the build if the mail doesnt reach -->
+					<!-- <failonerror>true</failonerror>
+					<executeIfTests>[passed|failed|passedOrFailed]</executeIfTests> -->
+					<!-- host -->
+					<mailhost>smtp.gmail.com</mailhost>
+					<!-- port of the host -->
+					<mailport>465</mailport>
+					<mailssl>true</mailssl>
+					<mailAltConfig>true</mailAltConfig>
+					
+					<!-- Email Authentication(USername and Password) -->
+					<mailuser>mahendergtk@gmail.com</mailuser>
+					<mailpassword>gtk@2018</mailpassword>
+					
+					<receivers>
+						<!-- To Email address -->
+						<receiver>mahenderd@gtkonnect.com</receiver>
+					</receivers>
+					
+					<fileSets>
+					<fileSet>
+						<!-- Report directory Path -->
+						<!-- <directory>E:\MavenprojectGTK\KonnectPortal\target\surefire-reports</directory> -->
+						<directory>E:\MavenprojectTFS\KonnectPortal\target\surefire-reports</directory>
+						<includes>
+							<!-- Report file name -->
+							<include>emailable-report.html</include>
+							<!-- <include>Extent.html</include> -->
+						</includes>
+						<!-- Use Regular Expressions like **/*.html if you want all the html files to send -->
+						</fileSet>
+					</fileSets>				
+				
+				</configuration>
+				</execution>
+			</executions>
+		</plugin>	 
+
+
+
+
+
+
+<!-- OUT LOOK TRYIN TO SEND EMAIL REPORTS -->
+
+	<!-- <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-report-plugin</artifactId>
+            <version>2.19.1</version>
+      </plugin>	 
+	<plugin>
+			<groupId>ch.fortysix</groupId>
+			<artifactId>maven-postman-plugin</artifactId>
+			<version>0.1.6</version>
+			<executions>
+				<execution>
+				
+				<id>send a mail</id>
+				<phase>test</phase>
+				<goals>
+				<goal>send-mail</goal>
+				</goals>
+				<inherited>true</inherited>
+				
+				<configuration>
+					From Email address
+					<from>mahenderd@gtkonnect.com</from>
+					
+					 Email subject
+					<subject>Test Automation Report from OUTLOOK</subject>
+					<body>Please find attached Automation Results for the day</body>
+					
+					Fail the build if the mail doesnt reach
+					<failonerror>true</failonerror>
+					<executeIfTests>[passed|failed|passedOrFailed]</executeIfTests>
+					
+					host
+					<mailhost>smtp-mail.outlook.com</mailhost>
+					<mailhost>outlook.live.com</mailhost>
+					<mailhost>login.live.com</mailhost>
+					<mailhost>outlook.office.com</mailhost>
+					<mailhost>smtp.outlook.com</mailhost>
+					<mailhost>smtp.office365.com</mailhost>
+					
+					port of the host
+					<mailport>587</mailport>
+					<mailauth>true</mailauth>
+					<mailstarttls>false</mailstarttls>
+					<mailssl>true</mailssl>
+					<mailstarttls>true</mailstarttls>
+					<mailAltConfig>true</mailAltConfig>
+					
+					Email Authentication(USername and Password)
+					<mailuser>mahenderd@gtkonnect.com</mailuser>
+					<mailpassword>Dhoni@522</mailpassword>
+					
+					<receivers>
+						To Email address
+						<receiver>mahenderd@gtkonnect.com</receiver>
+					</receivers>
+					
+					<fileSets>
+					<fileSet>
+						Report directory Path
+						<directory>E:\MavenprojectGTK\KonnectPortal\target\surefire-reports</directory>
+						<directory>E:\MavenprojectTFS\KonnectPortal\target\surefire-reports</directory>
+						<includes>
+							Report file name
+							<include>emailable-report.html</include>
+						</includes>
+						Use Regular Expressions like **/*.html if you want all the html files to send
+						</fileSet>
+					</fileSets>				
+				
+				</configuration>
+				</execution>
+			</executions>
+		</plugin>	 
+
+ -->
+
+
+
+
+
+
+
+
+
+
+
+
+	<!--  OUTLOOK OFFICE EMAIL UNABLE TO SEND REPORT -->
+	
+<!-- 	<plugin> -->
+<!--             <groupId>org.apache.maven.plugins</groupId> -->
+<!--             <artifactId>maven-surefire-report-plugin</artifactId> -->
+<!--             <version>2.21.0</version> -->
+<!--       </plugin> -->
+	
+<!-- 	<plugin> -->
+<!-- 			<groupId>ch.fortysix</groupId> -->
+<!-- 			<artifactId>maven-postman-plugin</artifactId> -->
+<!-- 			 <version>0.1.6</version> -->
+<!-- 		<executions> -->
+<!-- 			<execution> -->
+<!-- 				<id>Send Test Execution Email Report</id> -->
+<!-- 				<phase>test</phase> -->
+<!-- 				<goals> -->
+<!-- 				<goal>send-mail</goal> -->
+<!-- 				</goals> -->
+<!-- 				<inherited>true</inherited> -->
+				
+<!-- 			 <configuration> -->
+<!-- 					From Email address -->
+<!-- 					<from>mahenderd@gtkonnect.com</from> -->
+					
+<!-- 					 Email subject -->
+<!-- 					<subject>Test Automation Report</subject> -->
+<!-- 					<body>Please find attached Automation Results for the day</body> -->
+<!-- 					<groovyCondition><![CDATA[errors < skipped]]></groovyCondition> -->
+<!-- 					<skip>false</skip> -->
+					
+<!-- 					Fail the build if the mail doesnt reach -->
+<!-- 					<failonerror>true</failonerror> -->
+					
+<!-- 					host -->
+<!-- 					<mailhost>smtp-mail.outlook.com</mailhost> -->
+<!-- 					<mailhost>smtp-mail.outlook.com</mailhost> -->
+<!-- 					port of the host -->
+<!-- 					<mailport>587</mailport> -->
+<!-- 					<mailssl>true</mailssl> -->
+<!-- 					<starttls>true</starttls> -->
+<!-- 					<mailAltConfig>true</mailAltConfig> -->
+					
+<!-- 					Email Authentication(USername and Password) -->
+<!-- 					<mailuser>mahenderd@gtkonnect.com</mailuser> -->
+<!-- 					<mailpassword>Pa$$2cloud</mailpassword> -->
+					
+<!-- 					<receivers> -->
+<!-- 						To Email address -->
+<!-- 						<receiver>mahenderd@gtkonnect.com</receiver> -->
+<!-- 					</receivers> -->
+					
+<!-- 					<fileSets> -->
+<!-- 					<fileSet> -->
+<!-- 						Report directory Path -->
+<!-- 						<directory>E:\MavenprojectGTK\KonnectPortal\target\surefire-reports</directory> -->
+<!-- 						<includes> -->
+<!-- 							Report file name -->
+<!-- 							<include>emailable-report.html</include> -->
+<!-- 						</includes> -->
+<!-- 						Use Regular Expressions like **/*.html if you want all the html files to send -->
+<!-- 						</fileSet> -->
+<!-- 					</fileSets>				 -->
+				
+<!-- 				</configuration> -->
+<!-- 				</execution> -->
+<!-- 			</executions> -->
+<!-- 		</plugin>	  -->
+
+	</plugins>
+		<resources>
+			<resource>
+				<directory>src\main\resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+	</build>
+	<reporting>
+   <plugins>
+      <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-report-plugin</artifactId>
+            <version>2.19.1</version>
+      </plugin>
+    </plugins>     
+	</reporting>
+	
+   <dependencies>
+    <dependency>
+	<groupId>org.testng</groupId>
+	<artifactId>testng</artifactId>
+	<version>6.8</version>
+	<scope>compile</scope>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+	<dependency>
+    <groupId>org.seleniumhq.selenium</groupId>
+    <artifactId>selenium-java</artifactId>
+    <version>3.11.0</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-server -->
+	<dependency>
+    <groupId>org.seleniumhq.selenium</groupId>
+    <artifactId>selenium-server</artifactId>
+    <version>3.11.0</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-api -->
+	<dependency>
+    <groupId>org.seleniumhq.selenium</groupId>
+    <artifactId>selenium-api</artifactId>
+    <version>3.11.0</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-firefox-driver -->
+	<dependency>
+    <groupId>org.seleniumhq.selenium</groupId>
+    <artifactId>selenium-firefox-driver</artifactId>
+    <version>3.11.0</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-chrome-driver -->
+	<dependency>
+    <groupId>org.seleniumhq.selenium</groupId>
+    <artifactId>selenium-chrome-driver</artifactId>
+    <version>3.11.0</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-support -->
+	<dependency>
+    <groupId>org.seleniumhq.selenium</groupId>
+    <artifactId>selenium-support</artifactId>
+    <version>3.11.0</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+    <dependency>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>poi</artifactId>
+    <version>3.17</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
+    <dependency>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>poi-ooxml</artifactId>
+    <version>3.17</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.poi/poi-scratchpad -->
+    <dependency>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>poi-scratchpad</artifactId>
+    <version>3.17</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml-schemas -->
+    <dependency>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>poi-ooxml-schemas</artifactId>
+    <version>3.17</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.poi/ooxml-schemas -->
+    <dependency>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>ooxml-schemas</artifactId>
+    <version>1.3</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.poi/poi-excelant -->
+    <dependency>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>poi-excelant</artifactId>
+    <version>3.17</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.poi/poi-contrib -->
+    <dependency>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>poi-contrib</artifactId>
+    <version>3.6</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.poi/poi-examples -->
+    <dependency>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>poi-examples</artifactId>
+    <version>3.17</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.poi/openxml4j -->
+    <dependency>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>openxml4j</artifactId>
+    <version>1.0-beta</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/log4j/log4j -->
+    <dependency>
+    <groupId>log4j</groupId>
+    <artifactId>log4j</artifactId>
+    <version>1.2.17</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-dependency-plugin -->
+    <dependency>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-dependency-plugin</artifactId>
+    <version>3.0.2</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/javax.mail/mail -->
+    <dependency>
+    <groupId>javax.mail</groupId>
+    <artifactId>mail</artifactId>
+    <version>1.4.7</version>
+    </dependency> 
+    <!-- https://mvnrepository.com/artifact/javax.mail/javax.mail-api -->
+	<dependency>
+    <groupId>javax.mail</groupId>
+    <artifactId>javax.mail-api</artifactId>
+    <version>1.5.6</version>
+	</dependency>
+
+    
+	<!-- https://mvnrepository.com/artifact/com.relevantcodes/extentreports -->
+	<dependency>
+	<groupId>com.relevantcodes</groupId>
+	<artifactId>extentreports</artifactId>
+	<version>2.41.2</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/net.sourceforge.jexcelapi/jxl -->
+	<dependency>
+    <groupId>net.sourceforge.jexcelapi</groupId>
+    <artifactId>jxl</artifactId>
+    <version>2.6.12</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/net.sf.jxls/jxls-core -->
+	<dependency>
+    <groupId>net.sf.jxls</groupId>
+    <artifactId>jxls-core</artifactId>
+    <version>1.0.6</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.apache.maven/maven-model-builder -->
+	<dependency>
+    <groupId>org.apache.maven</groupId>
+    <artifactId>maven-model-builder</artifactId>
+    <version>3.5.3</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.codehaus.groovy/groovy-eclipse-compiler -->
+<dependency>
+    <groupId>org.codehaus.groovy</groupId>
+    <artifactId>groovy-eclipse-compiler</artifactId>
+    <version>2.9.2-01</version>
+</dependency>
+</dependencies>
+
+<pluginRepositories>
+    <pluginRepository>
+      <id>central</id>
+      <name>Maven Plugin Repository</name>
+      <url>http://repo1.maven.org/maven2</url>
+      <layout>default</layout>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <releases>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+    </pluginRepository>
+  </pluginRepositories>  
+</project>
