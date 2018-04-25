@@ -19,14 +19,14 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 
-import com.gtkv1qa.base.GTKTestBase;
+import com.gtkv1qa.base.LaunchConfigBase;
 
   
 /**
  * @author mahenderd
  *
  */
-public class TestUtil extends GTKTestBase {
+public class TestUtil extends LaunchConfigBase {
   
       
     public static long PAGE_LOAD_TIMEOUT =30;

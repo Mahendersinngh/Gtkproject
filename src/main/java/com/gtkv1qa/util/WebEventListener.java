@@ -19,7 +19,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.events.WebDriverEventListener;
 
-import com.gtkv1qa.base.GTKTestBase;
+import com.gtkv1qa.base.LaunchConfigBase;
 
 
 
@@ -27,7 +27,7 @@ import com.gtkv1qa.base.GTKTestBase;
  * @author mahenderd
  *
  */
-public class WebEventListener extends GTKTestBase implements WebDriverEventListener  {
+public class WebEventListener extends LaunchConfigBase implements WebDriverEventListener  {
 
 	public void beforeNavigateTo(String url, WebDriver driver) {
 		System.out.println("Before navigating to: '" + url + "'");

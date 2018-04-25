@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<!-- For TestNG XML TEST RUN  -->
+<!-- 
+<suite name="Konnect Project Modification Test Suite" verbose="10"  thread-count="6" preserve-order="true"  allow-return-values="true">
+	<listeners>
+		<listener class-name="com.konnect.ExtentReportListener.ExtentReporterNG"/>
+	</listeners>
+	
+	<test name="Update Project ProjectTab, NotesTab, LinkTab TestCases" verbose="10"  group-by-instances="true" allow-return-values="true">
+		<classes>
+			<class name="com.konnect.testcases.UpdateProjectPageTabTest"/>
+			<class name="com.konnect.testcases.UpdateProjectNotesTabTest"/>
+			<class name="com.konnect.testcases.UpdateProjectLinksTabTest"/>	
+		</classes>
+	</test>
+	
+	<test name="Update Project TaskTab,FilesTab, DiscussionTab TestCases" verbose="10"  group-by-instances="true" allow-return-values="true">
+        <classes>
+            <class name="com.konnect.testcases.UpdateProjectTaskTabTest"/>
+			<class name="com.konnect.testcases.UpdateProjectFilesTabTest"/>
+			<class name="com.konnect.testcases.UpdateProjectDiscussionTabTest"/>      
+        </classes>
+    </test> -->
+	
+	
+	
+	<!-- ********** For POM XML MAVEN TEST RUN and TestNG XML RUN ******** -->
+	
+	<suite name="Konnect Portal Projects Module" verbose="2"  thread-count="1" preserve-order="true"  allow-return-values="true">
+	
+	<listeners>
+		<listener class-name="com.konnect.ExtentReportListener.ExtentReporterNG"/>
+	</listeners>
+	
+	<test name="Login" verbose="2"  preserve-order="false" group-by-instances="false"  allow-return-values="true">
+        <classes>
+            <class name="com.konnect.testcases.LoginPageTest"/>    
+        </classes>
+    </test>
+	<!-- 
+	<test name="Update Project ProjectTab, NotesTab, LinkTab TestCases" verbose="2"  preserve-order="false" group-by-instances="false"  allow-return-values="true">
+		<classes>
+			<class name="com.konnect.testcases.LoginPageTest"/>
+			<class name="com.konnect.testcases.UpdateProjectPageTabTest"/>
+			<class name="com.konnect.testcases.UpdateProjectNotesTabTest"/>
+			<class name="com.konnect.testcases.UpdateProjectLinksTabTest"/>	
+		</classes>
+	</test>
+	<test name="Update Project TaskTab,FilesTab, DiscussionTab TestCases" verbose="2"  preserve-order="false" group-by-instances="false"  allow-return-values="true">
+        <classes>
+            <class name="com.konnect.testcases.UpdateProjectTaskTabTest"/>
+			<class name="com.konnect.testcases.UpdateProjectFilesTabTest"/>
+			<class name="com.konnect.testcases.UpdateProjectDiscussionTabTest"/>      
+        </classes>
+    </test> -->
+	
+	
+	<!-- **************  Working POM.xml  ********* -->
+	
+	<!--********** For POM XML MAVEN TEST RUN ******** -->
+	
+	<!-- <suite name="Konnect Project Modification Test Suite" verbose="2"  thread-count="6" preserve-order="true"  allow-return-values="true">
+
+	<suite name="KonnectPortal Application" allow-return-values="true">
+	<listeners>
+		<listener class-name="com.konnect.ExtentReportListener.ExtentReporterNG"/>
+	</listeners>
+	
+	<test name="Update Project ProjectTab, NotesTab, LinkTab TestCases" verbose="2"  group-by-instances="true" preserve-order="false" allow-return-values="true">
+		<classes>
+			<class name="com.konnect.testcases.UpdateProjectPageTabTest"/>
+			<class name="com.konnect.testcases.UpdateProjectNotesTabTest"/>
+			<class name="com.konnect.testcases.UpdateProjectLinksTabTest"/>	
+		</classes>
+	</test>
+	<test name="Update Project TaskTab,FilesTab, DiscussionTab TestCases" verbose="2"  group-by-instances="true" preserve-order="false" allow-return-values="true">
+        <classes>
+            <class name="com.konnect.testcases.UpdateProjectTaskTabTest"/>
+			<class name="com.konnect.testcases.UpdateProjectFilesTabTest"/>
+			<class name="com.konnect.testcases.UpdateProjectDiscussionTabTest"/>      
+        </classes>
+    </test> -->
+	
+</suite>

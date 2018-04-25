@@ -9,7 +9,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import com.gtkv1qa.base.GTKTestBase;
+import com.gtkv1qa.base.LaunchConfigBase;
 import com.gtkv1qa.pages.HomePage;
 import com.gtkv1qa.pages.LoginPage;
 import com.gtkv1qa.util.TestUtil;
@@ -18,7 +18,7 @@ import com.gtkv1qa.util.TestUtil;
  * @author mahenderd
  *
  */
-public class LoginPageTest extends GTKTestBase {
+public class LoginPageTest extends LaunchConfigBase {
 
 	LoginPage loginpage;
 	HomePage homepage;
@@ -50,7 +50,7 @@ public class LoginPageTest extends GTKTestBase {
 		return data;
 	}
 	
-	@Test(priority=2,dataProvider="GTKLoginusers")
+	@Test(priority=2,dataProvider="GTKLoginusers",description="Login Sucessfull")
 	public void LoginTest(String username1, String password1,String username2, String password2, String username3, String password3 ) throws InterruptedException
 	{
 		//loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
@@ -80,16 +80,14 @@ public class LoginPageTest extends GTKTestBase {
 		Assert.assertTrue(flag);
 	}
 	
-	@Test(priority=4)
+	@Test(priority=4,description="Logout Successfully")
 	public void Logout() {
 		homepage.Logout();
 	}
 	
-	
-	
 	@AfterClass
 	public void tearDown(){
-		//driver.quit();
+		driver.quit();
 	}	
 	
 	
