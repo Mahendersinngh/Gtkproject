@@ -78,6 +78,7 @@ public class LoginPageTest extends LaunchConfigBase {
 	public void GTKLogoTestAfterLogin() {
 		boolean flag = loginpage.ValidateGTKLogoAfterLogin();
 		Assert.assertTrue(flag);
+		//
 	}
 	
 	@Test(priority=4,description="Logout Successfully")
